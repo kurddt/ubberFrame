@@ -43,6 +43,16 @@ public:
 		VELO			= 0x8,
 		MAJ				= 0xff,
 	};
+
+	enum ID {
+		BEN_M		= 0x1,
+		CLEMENT		= 0x2,
+		JEJE		= 0x3,
+		MARC		= 0x4,
+		GUILLAUME_S	= 0x5,
+		DAMS		= 0x6,
+		GUILLAUME_L	= 0x7,
+	};
 private:
 	struct frame {
 		union {
