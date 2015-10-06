@@ -30,11 +30,20 @@ public:
 	int setDestID(uint8_t);
 	int setType(uint8_t);
 	int setPayload(const uint8_t payload[], unsigned int size);
-private:
+	
 	enum type {
-		PAYLOAD_DEFINED = 0,
-		PAUSE			= 1,
+		PAYLOAD_DEFINED = 0x0,
+		PAUSE			= 0x1,
+		RENCONTRE		= 0x2,
+		REPAS			= 0x3,
+		CLOPE			= 0x4,
+		CAFE			= 0x5,
+		PISCINE			= 0x6,
+		EPICURIA		= 0x7,
+		VELO			= 0x8,
+		MAJ				= 0xff,
 	};
+private:
 	struct frame {
 		union {
 			struct {
