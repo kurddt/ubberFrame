@@ -4,6 +4,7 @@
 //<<constructor>> Create a empty UbberFrame
 UbberFrame::UbberFrame()
 {
+	this->data.payloadSize = 0;
 }
 
 //<<desctructor>>
@@ -80,4 +81,10 @@ int UbberFrame::setPayload(const uint8_t payload[], unsigned int size)
 	memcpy(this->data.payload, payload, this->data.payloadSize);
 
 	return 0;
+}
+
+
+unsigned int UbberFrame::getLength()
+{
+	return 5 + this->data.payloadSize;
 }

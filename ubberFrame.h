@@ -11,8 +11,13 @@ public:
 	UbberFrame(const uint8_t data[], const unsigned int length);
 	//desctructor
 	~UbberFrame();
+
+	
 	int frameFromChar(const uint8_t data[], const unsigned int length);
 	const uint8_t * frameToChar();
+
+	unsigned int getLength();
+
 	//operators
 	uint8_t operator[](int);
 
