@@ -97,3 +97,72 @@ unsigned int UbberFrame::getLength()
 	return HEADER_SIZE + this->data.payloadSize;
 }
 
+
+
+char * UbberFrame::typeString(enum type type)
+{
+
+	 switch(type) {
+	 case PAYLOAD_DEFINED:
+		  return "PAYLOAD_DEFINED";
+	 case PAUSE:
+		  return "PAUSE";
+	 case RENCONTRE:
+		  return "RENCONTRE";
+	 case REPAS:
+		  return "REPAS";
+	 case CLOPE:
+		  return "CLOPE";
+	 case CAFE:
+		  return "CAFE";
+	 case PISCINE:
+		  return "PISCINE";
+	 case EPICURIA:
+		  return "EPICURIA";
+	 case VELO:
+		  return "VELO";
+	 case MAJ:
+		  return "MISE A JOUR";
+	 default:
+		  return NULL;
+	}
+}
+
+char * UbberFrame::getTypeString()
+{
+	 return typeString((enum type)this->data.type);
+}
+
+char * UbberFrame::iDString(enum id id)
+{
+	 switch(id) {
+	 case BEN_M:
+		  return "Benjamin Mingez";
+	 case CLEMENT:
+		  return "Clément Léger";
+	 case JEJE:
+		  return "Jérome Reybert";
+	 case MARC:
+		  return "Marc Poulhiès";
+	 case GUILLAUME_S:
+		  return "Guillaume Sarrazin";
+	 case DAMS:
+		  return "Damien Cottier";
+	 case GUILLAUME_L:
+		  return "Guillaume Lager";
+	 case ALL:
+		  return "Broadcast";
+	 default:
+		  return NULL;
+	 }
+}
+
+char * UbberFrame::getSourceIDString()
+{
+	 return iDString((enum id)this->data.sourceID);
+}
+
+char * UbberFrame::getDestIDString()
+{
+	 return iDString((enum id)this->data.destID);
+}

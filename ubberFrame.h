@@ -60,7 +60,7 @@ public:
 		MAJ				= 0xff,
 	};
 
-	enum ID {
+	enum id {
 		BEN_M		= 0x1,
 		CLEMENT		= 0x2,
 		JEJE		= 0x3,
@@ -70,6 +70,13 @@ public:
 		GUILLAUME_L	= 0x7,
 		ALL			= 0xff,
 	};
+
+	/* printable */
+	static char * iDString(enum id id);
+	static char * typeString(enum type type);
+	char * getTypeString();
+	char * getSourceIDString();
+	char * getDestIDString();
 private:
 	struct frame {
 		union {
@@ -89,9 +96,5 @@ private:
 	const unsigned int HEADER_SIZE = sizeof(struct frame) - MAX_PAYLOAD_SIZE;
 	
 };
-
-
-#define FRAME
-
 
 #endif //__UBBER_H_ */
