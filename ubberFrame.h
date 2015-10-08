@@ -4,6 +4,8 @@
 //#include <Arduino.h>
 #include <stdint.h>
 
+#define MAX_PAYLOAD_SIZE 255
+
 class UbberFrame {
 public:
 	//Constructores
@@ -12,10 +14,19 @@ public:
 	//desctructor
 	~UbberFrame();
 
-	
+	/**
+	 * Copy a uint8_t array to an UbberFrame
+	 */
 	int frameFromChar(const uint8_t data[], const unsigned int length);
+
+	/**
+	 * Return the frame content as a char. This is not a copy !
+	 */
 	const uint8_t * frameToChar();
 
+	/**
+	 * Get the UbberFrame length
+	 */
 	unsigned int getLength();
 
 	//operators
@@ -57,6 +68,7 @@ public:
 		GUILLAUME_S	= 0x5,
 		DAMS		= 0x6,
 		GUILLAUME_L	= 0x7,
+		ALL			= 0xff,
 	};
 private:
 	struct frame {
@@ -67,14 +79,19 @@ private:
 				uint8_t destID;
 				uint8_t type;
 				uint8_t payloadSize;
-				uint8_t payload[256];
+				uint8_t payload[MAX_PAYLOAD_SIZE];
 			};
 			uint8_t data[];
 		};
 	};
-
 	struct frame data;
+
+	const unsigned int HEADER_SIZE = sizeof(struct frame) - MAX_PAYLOAD_SIZE;
+	
 };
+
+
+#define FRAME
 
 
 #endif //__UBBER_H_ */

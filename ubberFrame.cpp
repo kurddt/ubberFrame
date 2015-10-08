@@ -1,6 +1,14 @@
 
 #include "ubberFrame.h"
 #include <string.h>
+
+#define FRAME_FLAGS_OFFSET 0
+#define FRAME_SOURCEID_OFFSET 1
+#define FRAME_DESTID_OFFSET 2
+#define FRAME_TYPE_OFFSET 3
+#define FRAME_PAYLOADSIZE_OFFSET 4
+#define FRAME_PAYLOAD_OFFSET 5
+
 //<<constructor>> Create a empty UbberFrame
 UbberFrame::UbberFrame()
 {
@@ -21,16 +29,16 @@ UbberFrame::UbberFrame(const uint8_t data[], const unsigned int length)
 
 int UbberFrame::frameFromChar(const uint8_t data[], const unsigned int length)
 {
-	if(length < 6 && length < 6 + data[4])
+	if(length < HEADER_SIZE || length != HEADER_SIZE + data[FRAME_PAYLOADSIZE_OFFSET])
 		return -1;
 
 	
-	this->data.flags = data[0];
-	this->data.sourceID = data[1];
-	this->data.destID = data[2];
-	this->data.type = data[3];
-	this->data.payloadSize = data[4] < 256 ? data[4] : 256;
-	memcpy(this->data.payload, &data[5], this->data.payloadSize);	
+	this->data.flags = data[FRAME_FLAGS_OFFSET];
+	this->data.sourceID = data[FRAME_SOURCEID_OFFSET];
+	this->data.destID = data[FRAME_DESTID_OFFSET];
+	this->data.type = data[FRAME_TYPE_OFFSET];
+	this->data.payloadSize = data[FRAME_PAYLOADSIZE_OFFSET] < MAX_PAYLOAD_SIZE ? data[FRAME_PAYLOADSIZE_OFFSET] : 256;
+	memcpy(this->data.payload, &data[FRAME_PAYLOAD_OFFSET], this->data.payloadSize);	
 	
 }
 
@@ -74,7 +82,7 @@ GEN_DATA_SETTER(uint8_t, setType, type)
 
 int UbberFrame::setPayload(const uint8_t payload[], unsigned int size)
 {
-	if(size > 255)
+	if(size > MAX_PAYLOAD_SIZE)
 		return -1;
 
 	this->data.payloadSize = size;
@@ -86,5 +94,6 @@ int UbberFrame::setPayload(const uint8_t payload[], unsigned int size)
 
 unsigned int UbberFrame::getLength()
 {
-	return 5 + this->data.payloadSize;
+	return HEADER_SIZE + this->data.payloadSize;
 }
+
