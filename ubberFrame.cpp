@@ -38,7 +38,10 @@ int UbberFrame::frameFromChar(const uint8_t data[], const unsigned int length)
 	this->data.destID = data[FRAME_DESTID_OFFSET];
 	this->data.type = data[FRAME_TYPE_OFFSET];
 	this->data.payloadSize = data[FRAME_PAYLOADSIZE_OFFSET] < MAX_PAYLOAD_SIZE ? data[FRAME_PAYLOADSIZE_OFFSET] : 256;
-	memcpy(this->data.payload, &data[FRAME_PAYLOAD_OFFSET], this->data.payloadSize);
+	if(this->data.payloadSize)
+		memcpy(this->data.payload, &data[FRAME_PAYLOAD_OFFSET], this->data.payloadSize);
+	else
+		this->data.payload[0] = '\0';
 
 	return 0;
 	
