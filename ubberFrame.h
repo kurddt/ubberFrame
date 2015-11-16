@@ -57,6 +57,7 @@ public:
 		PISCINE			= 0x6,
 		EPICURIA		= 0x7,
 		VELO			= 0x8,
+		ACQUITTEMENT	= 0xa,
 		MAJ				= 0xff,
 	};
 

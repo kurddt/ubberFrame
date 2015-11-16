@@ -126,6 +126,8 @@ char * UbberFrame::typeString(enum type type)
 		  return "EPICURIA";
 	 case VELO:
 		  return "VELO";
+	 case ACQUITTEMENT:
+		 return "AQUITTEMENT";
 	 case MAJ:
 		  return "MISE A JOUR";
 	 default:
