@@ -41,10 +41,10 @@ public:
 	const uint8_t * getPayload();
 
 	//setter
-	int setFlags(uint8_t);
-	int setSourceID(uint8_t);
-	int setDestID(uint8_t);
-	int setType(uint8_t);
+	void setFlags(uint8_t);
+	void setSourceID(uint8_t);
+	void setDestID(uint8_t);
+	void setType(uint8_t);
 	int setPayload(const uint8_t payload[], unsigned int size);
 	
 	enum type {
@@ -73,11 +73,11 @@ public:
 	};
 
 	/* printable */
-	static char * iDString(enum id id);
-	static char * typeString(enum type type);
-	char * getTypeString();
-	char * getSourceIDString();
-	char * getDestIDString();
+	static const char * iDString(enum id id);
+	static const char * typeString(enum type type);
+	const char * getTypeString();
+	const char * getSourceIDString();
+	const char * getDestIDString();
 private:
 	struct frame {
 		union {

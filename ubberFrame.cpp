@@ -66,7 +66,7 @@ uint8_t UbberFrame::operator[](int index)
 
 
 #define GEN_DATA_SETTER(__type, __name, __attribute) \
-	int UbberFrame::__name (__type __attribute) { \
+	void UbberFrame::__name (__type __attribute) { \
 		this->data.__attribute = __attribute; \
 	}
 
@@ -104,7 +104,7 @@ unsigned int UbberFrame::getLength()
 
 
 
-char * UbberFrame::typeString(enum type type)
+const char * UbberFrame::typeString(enum type type)
 {
 
 	 switch(type) {
@@ -135,22 +135,22 @@ char * UbberFrame::typeString(enum type type)
 	}
 }
 
-char * UbberFrame::getTypeString()
+const char * UbberFrame::getTypeString()
 {
 	 return typeString((enum type)this->data.type);
 }
 
-char * UbberFrame::iDString(enum id id)
+const char * UbberFrame::iDString(enum id id)
 {
 	 switch(id) {
 	 case BEN_M:
 		  return "Benjamin Mingez";
 	 case CLEMENT:
-		  return "ClÃ©ment LÃ©ger";
+		  return "Clément Léger";
 	 case JEJE:
-		  return "JÃ©rome Reybert";
+		  return "Jérome Reybert";
 	 case MARC:
-		  return "Marc PoulhiÃ¨s";
+		  return "Marc Poulhiès";
 	 case GUILLAUME_S:
 		  return "Guillaume Sarrazin";
 	 case DAMS:
@@ -164,12 +164,12 @@ char * UbberFrame::iDString(enum id id)
 	 }
 }
 
-char * UbberFrame::getSourceIDString()
+const char * UbberFrame::getSourceIDString()
 {
 	 return iDString((enum id)this->data.sourceID);
 }
 
-char * UbberFrame::getDestIDString()
+const char * UbberFrame::getDestIDString()
 {
 	 return iDString((enum id)this->data.destID);
 }
